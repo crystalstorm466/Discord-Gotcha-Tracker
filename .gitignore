@@ -35,4 +35,5 @@ cmake/
 CmakeFiles/
 Gotcha.xlsx
 CMakeLists.bak
+CMakeCache.txt
 
