@@ -28,11 +28,15 @@ There is a bonus category too for the Band director Dr. Brandon Meeks which is s
 
     $ git clone https://github.com/crystalstorm466/Discord-Gotcha-Tracker.git
     $ cd Discord-Gotcha-Tracker
-    $ ~/vcpkg/vcpkg install dpp
+    $ /path/to/vcpkg/vcpkg/vcpkg install dpp
     $ sudo yay -S openxlsx
+    Make sure to include your bot token as an environment variable
+    $ export DISCORD_BOT_TOKEN="TOKEN"
     $ make clean
     $ make
 
+## Running the Bot
+``` $ /path/to/binary/discord_bot```
 ## Contributing & To-Do Lists
 Feel free to contribute any code you would like!
 
