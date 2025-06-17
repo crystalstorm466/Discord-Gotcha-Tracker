@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <dpp/dpp.h> // Includes most common DPP headers
 #include <OpenXLSX.hpp>
 
@@ -39,6 +40,132 @@ bool starts_with(const std::string& str, const std::string& prefix) {
 bool ends_with(const std::string& str, const std::string& suffix) {
     return str.size() >= suffix.size() &&
     str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+}
+//std::string sender_username = sender_discord_username.username;
+//dpp::snowflake mentioned_user_id = std::get<dpp::snowflake>(event.get_parameter("user"));
+//list_gotcha(bot, event, sender_username, mentioned_user_id);
+int64_t list_gotcha(dpp::cluster& bot, const dpp::slashcommand_t& event,
+                 const std::string& sender_discord_username,
+                 dpp::snowflake mentioned_user_id, 
+                int scoreType) {
+    std::string target_discord_username;
+    if (mentioned_user_id == 0) {
+        target_discord_username = sender_discord_username; // If no mention, use sender
+    } else {
+        auto user = bot.user_get(mentioned_user_id, dpp::cache_policy::cp_default, dpp::co_synchronous);
+        if (user.is_error()) {
+            event.reply("Error fetching mentioned user: " + user.get_error().message);
+            return;
+        }
+        target_discord_username = user.get().username;
+    }
+    std::lock_guard<std::mutex> lock(spreadsheet_mutex);
+
+    if (!std::filesystem::exists(SPREADSHEET_FILENAME)) {
+        std::cerr << "Error: Spreadsheet file '" << SPREADSHEET_FILENAME << "' not found.\n";
+        std::cerr <<  "The scoring spreadsheet is missing. Please contact an admin." << std::endl
+    }
+
+    XLDocument doc;
+    try {
+        doc.open(SPREADSHEET_FILENAME);
+    } catch (const std::exception& e) {
+        std::cerr << "Error: Cannot open spreadsheet '" << SPREADSHEET_FILENAME << "': " << e.what() << "\n";
+        std::cerr << "Could not load the scoring spreadsheet. Please contact a CS major. @crystal_storm" << std::endl;
+    }
+    
+   
+    XLWorksheet wks;
+    try {
+        wks = doc.workbook().worksheet("Spring 2025"); //Change this for whatever semester we are in. 
+    } catch (const std::exception& e) {
+         std::cerr << "Error accessing worksheet 'Spring 2025': " << e.what() << std::endl;
+         try { doc.close(); } catch(...) {}
+        std::cerr << "Error accessing worksheet 'Spring 2025'. It might not exist or is corrupted." << std::endl; 
+    }
+
+    const auto& discordToNameMap = getDiscordToName();
+    std::string shooter_spreadsheet_name, victim_spreadsheet_name;
+
+    auto shooter_it = discordToNameMap.find(sender_discord_username);
+    if (shooter_it == discordToNameMap.end()) {
+        try { doc.close(); } catch(...) {}
+        event.reply("Your Discord username ('" + sender_discord_username + "') isn't registered for scoring. Please contact an admin.");
+    }
+    shooter_spreadsheet_name = shooter_it->second;
+  
+
+    bool Meeks = false;
+    auto victim_it = discordToNameMap.find(target_discord_username);
+    if (target_discord_username == "Dr. Freeks") {
+    Meeks = true;
+    } else {
+      victim_it = discordToNameMap.find(target_discord_username);
+       if (victim_it == discordToNameMap.end()) {
+        try { doc.close(); } catch(...) {}
+        event.reply( "The mentioned user ('" + target_discord_username + "') isn't registered for scoring.");
+      }
+     victim_spreadsheet_name = victim_it->second;
+    }
+    bool shooter_found = false;
+    bool victim_found = false;
+
+    int numRows = 0;
+
+    try {
+        numRows = wks.rowCount();
+    } catch (const std::exception& e) {
+        std::cerr << "Error getting row count for worksheet 'Spring 2025': " << e.what() << std::endl;
+        try { doc.close(); } catch(...) {}
+        std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+    }
+    int numCols = wks.columnCount();
+    
+
+  
+    int current_score;
+
+    for (int row = 1; row <= numRows; ++row) {
+          try {
+            auto cell = wks.cell(row, 1); //Names in COL A
+            XLCellReference cellRef(row, 1);
+            if (cell.value().type() == XLValueType::String) {
+              std::string cellValueStr = cell.value().get<std::string>();
+            
+            if (cellValueStr == shooter_spreadsheet_name ) {
+                if (scoreType == 0) {
+                //move over one to left to get to Gotcha! 
+                shooter_found = true;
+                auto score_cell = wks.cell(row, 2); 
+                return score_cell.value().get<int>();//maybe? 
+                if (scoreType == 2) {
+                    score_cell = wks.cell(row, 4); //Meeks points
+                    return score_cell.value().get<int>();//maybe? 
+                }
+                
+                } else if (scoreType == 2) {
+                    shooter_found = true;
+                    auto score_cell = wks.cell(row, 4); //Meeks points
+                    return score_cell.value().get<int>();//maybe? 
+                } else if (scoreType == 1) {
+                    shooter_found = true;
+                    auto score_cell = wks.cell(row, 3); //Got Got! points
+                    return score_cell.value().get<int>();//maybe? 
+
+                
+                } 
+            // Update victim's "Got Got!" score (Column C)
+           
+          }             
+        }
+        }  catch (const std::exception& e) {
+        continue;
+    }
+    
+    }
+    
+
+
 }
 // --- Spreadsheet Update Logic ---
 std::string update_spreadsheet_core_logic (const std::string& sender_discord_username,
@@ -409,7 +536,11 @@ void on_ready_handler(dpp::cluster& bot, const dpp::ready_t& event) {
         update_command.add_option(
             dpp::command_option(dpp::co_string, "date", "Date to search from (MM-DD-YYYY)", true)
         );
-        bot.global_command_create(update_command);
+        dpp::slashcommand gotcha_command("gotcha", "List all scores for the intended target. ", bot.me.id);
+        gotcha_command.add_option(
+            dpp::command_option(dpp::co_user, "target", "The user to list scores for.", false, true) // Optional mention
+        );
+        bot.global_command_create(gotcha_command);
          std::cout << "Slash commands registered.\n";
         
     }
@@ -419,15 +550,24 @@ void on_ready_handler(dpp::cluster& bot, const dpp::ready_t& event) {
 void on_slash_command_handler(dpp::cluster& bot, const dpp::slashcommand_t& event) {
     if (event.command.get_command_name() == "ping") {
         event.reply("Pong!");
-    } else if (event.command.get_command_name() == "embed") {
-        dpp::embed embed = dpp::embed()
+    } else if (event.command.get_command_name() == "gotcha") {
+        //list person's gotcha! and got got score!
+    dpp::user sender_discord_username = event.command.get_issuing_user();
+       std::string sender_username = sender_discord_username.username;
+       dpp::snowflake mentioned_user_id = std::get<dpp::snowflake>(event.get_parameter("user"));
+       int gotcha_score = list_gotcha(bot, event, sender_username, mentioned_user_id, 0);
+       int gotgot_score = list_gotcha(bot, event, sender_username, mentioned_user_id, 1);
+       int meeks_score = list_gotcha(bot, event, sender_username, mentioned_user_id, 2);
+
+       dpp::embed embed = dpp::embed()
             .set_color(dpp::colors::sti_blue)
-            .set_title("This is a title.")
-            .set_url("https://dpp.dev/")
-            .set_description("This is the bot made in C++ with D++!")
-            .set_thumbnail(bot.me.get_avatar_url()) // Using bot's avatar
-            .add_field("Field 1", "Some text here.")
-            .add_field("Field 2", "More text here.", true)
+            .set_title("Gotcha Scores for " + sender_username)
+          //  .set_url("https://dpp.dev/")
+           // .set_description("")
+            .set_thumbnail("/xijinpging.jpg") // Using bot's avatar
+            .add_field("Gotcha!:", gotcha_score)
+            .add_field("Got Got!: ", gotgot_score, true)
+            .add_field("Dr. Meeks Points: ", meeks_score, true)
             .set_timestamp(time(0));
         dpp::message msg(event.command.channel_id, embed);
         event.reply(msg);
@@ -451,7 +591,7 @@ void on_message_create_handler(dpp::cluster& bot, const dpp::message_create_t& e
                 ends_with(attachment.filename, ".jpg") || // Added jpg
                 ends_with(attachment.filename, ".gif")) { // Added gif
                 image_found = true;
-                break;
+                  break;
             }
         }
 
