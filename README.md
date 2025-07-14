@@ -16,6 +16,9 @@ Then we go to the target's name and do the same thing there but increment the ta
 
 There is a bonus category too for the Band director Dr. Brandon Meeks which is scored by triggering the bot. 
 
+Update (07/13/2025):
+    - /listscores: List scores for yourself or anyone else.
+    - /DiscordToName Hash map now in .csv file that is imported on first run. (Hidden for privacy).
 
 
 # Requirements
@@ -44,7 +47,7 @@ There is a bonus category too for the Band director Dr. Brandon Meeks which is s
 ## Contributing & To-Do Lists
 Feel free to contribute any code you would like!
 
- - Read list of DiscordNames->RealLifeNames from a .csv file into a Hashmap instead of hardcoding
+ 
  - Make it more boilerplate for other servers to use
  - Get an automatic upload going instead of using crontab and rsync.
 
