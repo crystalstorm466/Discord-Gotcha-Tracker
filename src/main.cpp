@@ -627,8 +627,7 @@ void handle_update(dpp::cluster& bot, const dpp::slashcommand_t& event) {
 void on_ready_handler(dpp::cluster& bot, const dpp::ready_t& event) {
     if (dpp::run_once<struct register_bot_commands>()) {
         // std::cout << "Clearing out all commands first..." << std::endl;
-        bot.global_b// Consider making this configurable (e.g., from an environment variable or config file)
-        ulk_command_delete(); // Use with caution, uncomment if you need to clear all commands
+        //bot.global_bulk_command_delete()
          std::cout << "Registering slash commands...\n";
 
         bot.global_command_create(dpp::slashcommand("ping", "Ping Pong!", bot.me.id));
