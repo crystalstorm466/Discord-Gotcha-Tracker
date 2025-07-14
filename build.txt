@@ -1,0 +1,593 @@
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_TOOLCHAIN_FILE
+
+
+-- Build files have been written to: /home/david/Documents/DiscordBot/build
+cmake --build build
+make[1]: Entering directory '/home/david/Documents/DiscordBot/build'
+[ 50%] Building CXX object CMakeFiles/discord-bot.dir/src/main.cpp.o
+/home/david/Documents/DiscordBot/src/main.cpp: In function ‘int64_t list_gotcha(dpp::cluster&, const dpp::slashcommand_t&, const std::string&, dpp::snowflake, int)’:
+/home/david/Documents/DiscordBot/src/main.cpp:55:72: error: ‘cp_default’ is not a member of ‘dpp::cache_policy’; did you mean ‘cpol_default’?
+   55 |         auto user = bot.user_get(mentioned_user_id, dpp::cache_policy::cp_default, dpp::co_synchronous);
+      |                                                                        ^~~~~~~~~~
+      |                                                                        cpol_default
+/home/david/Documents/DiscordBot/src/main.cpp:55:89: error: ‘co_synchronous’ is not a member of ‘dpp’
+   55 |         auto user = bot.user_get(mentioned_user_id, dpp::cache_policy::cp_default, dpp::co_synchronous);
+      |                                                                                         ^~~~~~~~~~~~~~
+/home/david/Documents/DiscordBot/src/main.cpp:58:13: error: return-statement with no value, in function returning ‘int64_t’ {aka ‘long int’} [-fpermissive]
+   58 |             return;
+      |             ^~~~~~
+/home/david/Documents/DiscordBot/src/main.cpp:66:98: error: expected ‘;’ before ‘}’ token
+   66 |         std::cerr <<  "The scoring spreadsheet is missing. Please contact an admin." << std::endl
+      |                                                                                                  ^
+      |                                                                                                  ;
+   67 |     }
+      |     ~                                                                                             
+/home/david/Documents/DiscordBot/src/main.cpp:120:91: error: no match for ‘operator<<’ (operand types are ‘std::basic_ostream<char>’ and ‘std::ostream’ {aka ‘std::basic_ostream<char>’})
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^~ ~~~~
+      |                   |                                                                          |
+      |                   basic_ostream<[...]>                                                       basic_ostream<[...]>
+/home/david/Documents/DiscordBot/src/main.cpp:120:91: note: there are 70 candidates
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/home/david/Documents/DiscordBot/src/main.cpp:120:91: note: candidate 1: ‘operator<<(int, int)’ (built-in)
+/home/david/Documents/DiscordBot/src/main.cpp:120:91: note: no known conversion for argument 2 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘int’
+In file included from /usr/include/c++/15.1.1/ostream:42,
+                 from /usr/include/c++/15.1.1/istream:43,
+                 from /usr/include/c++/15.1.1/fstream:42,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:28,
+                 from /home/david/Documents/DiscordBot/src/main.cpp:2:
+/usr/include/c++/15.1.1/bits/ostream.h:116:7: note: candidate 2: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(__ostream_type& (*)(__ostream_type&)) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  116 |       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:116:36: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘std::basic_ostream<char>::__ostream_type& (*)(std::basic_ostream<char>::__ostream_type&)’ {aka ‘std::basic_ostream<char>& (*)(std::basic_ostream<char>&)’}
+  116 |       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+      |                  ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:125:7: note: candidate 3: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(__ios_type& (*)(__ios_type&)) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>; __ios_type = std::basic_ios<char>]’
+  125 |       operator<<(__ios_type& (*__pf)(__ios_type&))
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:125:32: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘std::basic_ostream<char>::__ios_type& (*)(std::basic_ostream<char>::__ios_type&)’ {aka ‘std::basic_ios<char>& (*)(std::basic_ios<char>&)’}
+  125 |       operator<<(__ios_type& (*__pf)(__ios_type&))
+      |                  ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:135:7: note: candidate 4: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::ios_base& (*)(std::ios_base&)) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  135 |       operator<<(ios_base& (*__pf) (ios_base&))
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:135:30: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘std::ios_base& (*)(std::ios_base&)’
+  135 |       operator<<(ios_base& (*__pf) (ios_base&))
+      |                  ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:174:7: note: candidate 5: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  174 |       operator<<(long __n)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:174:23: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘long int’
+  174 |       operator<<(long __n)
+      |                  ~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:178:7: note: candidate 6: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  178 |       operator<<(unsigned long __n)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:178:32: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘long unsigned int’
+  178 |       operator<<(unsigned long __n)
+      |                  ~~~~~~~~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:182:7: note: candidate 7: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(bool) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  182 |       operator<<(bool __n)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:182:23: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘bool’
+  182 |       operator<<(bool __n)
+      |                  ~~~~~^~~
+In file included from /usr/include/c++/15.1.1/ostream:294:
+/usr/include/c++/15.1.1/bits/ostream.tcc:100:5: note: candidate 8: ‘std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(short int) [with _CharT = char; _Traits = std::char_traits<char>]’
+  100 |     basic_ostream<_CharT, _Traits>::
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.tcc:101:22: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘short int’
+  101 |     operator<<(short __n)
+      |                ~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:189:7: note: candidate 9: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(short unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  189 |       operator<<(unsigned short __n)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:189:33: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘short unsigned int’
+  189 |       operator<<(unsigned short __n)
+      |                  ~~~~~~~~~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.tcc:114:5: note: candidate 10: ‘std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(int) [with _CharT = char; _Traits = std::char_traits<char>]’
+  114 |     basic_ostream<_CharT, _Traits>::
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.tcc:115:20: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘int’
+  115 |     operator<<(int __n)
+      |                ~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:200:7: note: candidate 11: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  200 |       operator<<(unsigned int __n)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:200:31: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘unsigned int’
+  200 |       operator<<(unsigned int __n)
+      |                  ~~~~~~~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:211:7: note: candidate 12: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  211 |       operator<<(long long __n)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:211:28: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘long long int’
+  211 |       operator<<(long long __n)
+      |                  ~~~~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:215:7: note: candidate 13: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  215 |       operator<<(unsigned long long __n)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:215:37: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘long long unsigned int’
+  215 |       operator<<(unsigned long long __n)
+      |                  ~~~~~~~~~~~~~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:231:7: note: candidate 14: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(double) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  231 |       operator<<(double __f)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:231:25: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘double’
+  231 |       operator<<(double __f)
+      |                  ~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:235:7: note: candidate 15: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(float) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  235 |       operator<<(float __f)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:235:24: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘float’
+  235 |       operator<<(float __f)
+      |                  ~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:243:7: note: candidate 16: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long double) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  243 |       operator<<(long double __f)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:243:30: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘long double’
+  243 |       operator<<(long double __f)
+      |                  ~~~~~~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:301:7: note: candidate 17: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(const void*) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>]’
+  301 |       operator<<(const void* __p)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:301:30: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘const void*’
+  301 |       operator<<(const void* __p)
+      |                  ~~~~~~~~~~~~^~~
+/usr/include/c++/15.1.1/bits/ostream.h:306:7: note: candidate 18: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::nullptr_t) [with _CharT = char; _Traits = std::char_traits<char>; __ostream_type = std::basic_ostream<char>; std::nullptr_t = std::nullptr_t]’
+  306 |       operator<<(nullptr_t)
+      |       ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:306:18: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘std::nullptr_t’
+  306 |       operator<<(nullptr_t)
+      |                  ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.tcc:128:5: note: candidate 19: ‘std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(__streambuf_type*) [with _CharT = char; _Traits = std::char_traits<char>; __streambuf_type = std::basic_streambuf<char>]’
+  128 |     basic_ostream<_CharT, _Traits>::
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.tcc:129:34: note: no known conversion for argument 1 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘std::basic_ostream<char>::__streambuf_type*’ {aka ‘std::basic_streambuf<char>*’}
+  129 |     operator<<(__streambuf_type* __sbin)
+      |                ~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from /usr/include/c++/15.1.1/bits/basic_string.h:51,
+                 from /usr/include/c++/15.1.1/string:56,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:25:
+/usr/include/c++/15.1.1/string_view:767:5: note: candidate 20: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, basic_string_view<_CharT, _Traits>)’
+  767 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/string_view:767:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘std::basic_string_view<_CharT, _Traits>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4367:5: note: candidate 21: ‘template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const __cxx11::basic_string<_CharT, _Traits, _Alloc>&)’
+ 4367 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4367:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+In file included from /usr/include/c++/15.1.1/bits/memory_resource.h:40,
+                 from /usr/include/c++/15.1.1/string:72:
+/usr/include/c++/15.1.1/cstddef:130:5: note: candidate 22: ‘template<class _IntegerType> constexpr std::__byte_op_t<_IntegerType> std::operator<<(byte, _IntegerType)’
+  130 |     operator<<(byte __b, _IntegerType __shift) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/cstddef:130:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:19: note:   cannot convert ‘std::operator<< <char_traits<char> >(std::cerr, ((const char*)"Error reading spreadsheet structure (rowCount) for \'Spring 2025\'."))’ (type ‘std::basic_ostream<char>’) to type ‘std::byte’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |         ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/15.1.1/bits/ios_base.h:48,
+                 from /usr/include/c++/15.1.1/ios:46,
+                 from /usr/include/c++/15.1.1/istream:42:
+/usr/include/c++/15.1.1/system_error:341:5: note: candidate 23: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const error_code&)’
+  341 |     operator<<(basic_ostream<_CharT, _Traits>& __os, const error_code& __e)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/system_error:341:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const std::error_code&’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:626:5: note: candidate 24: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _CharT)’
+  626 |     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:626:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   deduced conflicting types for parameter ‘_CharT’ (‘char’ and ‘std::basic_ostream<char>’)
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:636:5: note: candidate 25: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, char)’
+  636 |     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:636:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:642:5: note: candidate 26: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char)’
+  642 |     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:642:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:653:5: note: candidate 27: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, signed char)’
+  653 |     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:653:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘signed char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:658:5: note: candidate 28: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, unsigned char)’
+  658 |     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:658:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘unsigned char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:667:5: note: candidate 29: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, wchar_t)’ (deleted)
+  667 |     operator<<(basic_ostream<char, _Traits>&, wchar_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:667:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘wchar_t’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:672:5: note: candidate 30: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char8_t)’ (deleted)
+  672 |     operator<<(basic_ostream<char, _Traits>&, char8_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:672:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘char8_t’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:677:5: note: candidate 31: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char16_t)’ (deleted)
+  677 |     operator<<(basic_ostream<char, _Traits>&, char16_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:677:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘char16_t’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:681:5: note: candidate 32: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, char32_t)’ (deleted)
+  681 |     operator<<(basic_ostream<char, _Traits>&, char32_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:681:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘char32_t’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:687:5: note: candidate 33: ‘template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, char8_t)’ (deleted)
+  687 |     operator<<(basic_ostream<wchar_t, _Traits>&, char8_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:687:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   mismatched types ‘wchar_t’ and ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:692:5: note: candidate 34: ‘template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, char16_t)’ (deleted)
+  692 |     operator<<(basic_ostream<wchar_t, _Traits>&, char16_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:692:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   mismatched types ‘wchar_t’ and ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:696:5: note: candidate 35: ‘template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, char32_t)’ (deleted)
+  696 |     operator<<(basic_ostream<wchar_t, _Traits>&, char32_t) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:696:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   mismatched types ‘wchar_t’ and ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:717:5: note: candidate 36: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const _CharT*)’
+  717 |     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:717:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   mismatched types ‘const _CharT*’ and ‘std::basic_ostream<char>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.tcc:311:5: note: candidate 37: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const char*)’
+  311 |     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.tcc:311:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const char*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:734:5: note: candidate 38: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char*)’
+  734 |     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:734:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const char*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:747:5: note: candidate 39: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const signed char*)’
+  747 |     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:747:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const signed char*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:752:5: note: candidate 40: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const unsigned char*)’
+  752 |     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:752:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const unsigned char*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:761:5: note: candidate 41: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const wchar_t*)’ (deleted)
+  761 |     operator<<(basic_ostream<char, _Traits>&, const wchar_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:761:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const wchar_t*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:766:5: note: candidate 42: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char8_t*)’ (deleted)
+  766 |     operator<<(basic_ostream<char, _Traits>&, const char8_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:766:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const char8_t*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:771:5: note: candidate 43: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char16_t*)’ (deleted)
+  771 |     operator<<(basic_ostream<char, _Traits>&, const char16_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:771:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const char16_t*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:775:5: note: candidate 44: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(basic_ostream<char, _Traits>&, const char32_t*)’ (deleted)
+  775 |     operator<<(basic_ostream<char, _Traits>&, const char32_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:775:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘const char32_t*’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:781:5: note: candidate 45: ‘template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, const char8_t*)’ (deleted)
+  781 |     operator<<(basic_ostream<wchar_t, _Traits>&, const char8_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:781:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   mismatched types ‘wchar_t’ and ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:786:5: note: candidate 46: ‘template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, const char16_t*)’ (deleted)
+  786 |     operator<<(basic_ostream<wchar_t, _Traits>&, const char16_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:786:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   mismatched types ‘wchar_t’ and ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:790:5: note: candidate 47: ‘template<class _Traits> std::basic_ostream<wchar_t, _Traits>& std::operator<<(basic_ostream<wchar_t, _Traits>&, const char32_t*)’ (deleted)
+  790 |     operator<<(basic_ostream<wchar_t, _Traits>&, const char32_t*) = delete;
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:790:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   mismatched types ‘wchar_t’ and ‘char’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:836:5: note: candidate 48: ‘template<class _Ostream, class _Tp> _Ostream&& std::operator<<(_Ostream&&, const _Tp&)’
+  836 |     operator<<(_Ostream&& __os, const _Tp& __x)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:836:5: note: template argument deduction/substitution failed:
+/usr/include/c++/15.1.1/bits/ostream.h: In substitution of ‘template<class _Ostream, class _Tp> _Ostream&& std::operator<<(_Ostream&&, const _Tp&) [with _Ostream = std::basic_ostream<char>&; _Tp = std::basic_ostream<char>]’:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94:   required from here
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:836:5: error: template constraint failure for ‘template<class _Os, class _Tp>  requires (__derived_from_ios_base<_Os>) && requires(_Os& __os, const _Tp& __t) {__os << __t;} using std::__rvalue_stream_insertion_t = _Os&&’
+  836 |     operator<<(_Ostream&& __os, const _Tp& __x)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/ostream.h:836:5: note: constraints not satisfied
+/usr/include/c++/15.1.1/bits/ostream.h: In substitution of ‘template<class _Os, class _Tp>  requires (__derived_from_ios_base<_Os>) && requires(_Os& __os, const _Tp& __t) {__os << __t;} using std::__rvalue_stream_insertion_t = _Os&& [with _Os = std::basic_ostream<char>&; _Tp = std::basic_ostream<char>]’:
+/usr/include/c++/15.1.1/bits/ostream.h:836:5:   required by substitution of ‘template<class _Ostream, class _Tp> _Ostream&& std::operator<<(_Ostream&&, const _Tp&) [with _Ostream = std::basic_ostream<char>&; _Tp = std::basic_ostream<char>]’
+/home/david/Documents/DiscordBot/src/main.cpp:120:94:   required from here
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/ostream.h:803:13:   required for the satisfaction of ‘__derived_from_ios_base<_Os>’ [with _Os = std::basic_ostream<char, std::char_traits<char> >&]
+/usr/include/c++/15.1.1/bits/ostream.h:803:39: note: the expression ‘is_class_v<_Tp> [with _Tp = std::basic_ostream<char, std::char_traits<char> >&]’ evaluated to ‘false’
+  803 |     concept __derived_from_ios_base = is_class_v<_Tp>
+      |                                       ^~~~~~~~~~~~~~~
+In file included from /usr/include/c++/15.1.1/memory:80,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/nlohmann/json_fwd.hpp:14,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/json_fwd.h:25,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/snowflake.h:24,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:36:
+/usr/include/c++/15.1.1/bits/unique_ptr.h:1157:5: note: candidate 49: ‘template<class _CharT, class _Traits, class _Tp, class _Dp> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const unique_ptr<_Up, _Ep>&) requires requires{std::operator<<::__os << std::operator<<::__p->get();}’
+ 1157 |     operator<<(basic_ostream<_CharT, _Traits>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/unique_ptr.h:1157:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::unique_ptr<_Up, _Ep>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+In file included from /usr/include/c++/15.1.1/memory:82:
+/usr/include/c++/15.1.1/bits/shared_ptr.h:70:5: note: candidate 50: ‘template<class _Ch, class _Tr, class _Tp, __gnu_cxx::_Lock_policy _Lp> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, const __shared_ptr<_Tp, _Lp>&)’
+   70 |     operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/bits/shared_ptr.h:70:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+In file included from /home/david/vcpkg/installed/x64-linux/include/dpp/stringops.h:27,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:38:
+/usr/include/c++/15.1.1/iomanip:89:5: note: candidate 51: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Resetiosflags)’
+   89 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Resetiosflags __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:89:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘std::_Resetiosflags’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/iomanip:119:5: note: candidate 52: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Setiosflags)’
+  119 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setiosflags __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:119:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘std::_Setiosflags’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/iomanip:153:5: note: candidate 53: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Setbase)’
+  153 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setbase __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:153:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘std::_Setbase’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/iomanip:190:5: note: candidate 54: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Setfill<_CharT>)’
+  190 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setfill<_CharT> __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:190:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘std::_Setfill<_CharT>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/iomanip:220:5: note: candidate 55: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Setprecision)’
+  220 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setprecision __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:220:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘std::_Setprecision’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/iomanip:250:5: note: candidate 56: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Setw)’
+  250 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setw __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:250:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘std::_Setw’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/iomanip:323:5: note: candidate 57: ‘template<class _CharT, class _Traits, class _MoneyT> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Put_money<_MoneyT>)’
+  323 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_money<_MoneyT> __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:323:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘std::_Put_money<_MoneyT>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/iomanip:375:5: note: candidate 58: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, _Put_time<_CharT>)’
+  375 |     operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_time<_CharT> __f)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/iomanip:375:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘std::_Put_time<_CharT>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+In file included from /home/david/vcpkg/installed/x64-linux/include/dpp/thread_pool.h:24,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/socketengine.h:30,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:40:
+/usr/include/c++/15.1.1/thread:107:5: note: candidate 59: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(basic_ostream<_CharT, _Traits>&, thread::id)’
+  107 |     operator<<(basic_ostream<_CharT, _Traits>& __out, thread::id __id)
+      |     ^~~~~~~~
+/usr/include/c++/15.1.1/thread:107:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   cannot convert ‘std::cerr’ (type ‘std::ostream’ {aka ‘std::basic_ostream<char>’}) to type ‘std::thread::id’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+In file included from /usr/include/c++/15.1.1/valarray:607,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/nlohmann/json.hpp:171,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/json.h:25,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/json_interface.h:24,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/voicestate.h:27,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:42:
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: candidate 60: ‘template<class _Dom1, class _Dom2> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_Expr, std::_Expr, _Dom1, _Dom2>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const _Expr<_Dom1, typename _Dom1::value_type>&, const _Expr<_Dom2, typename _Dom2::value_type>&)’
+  415 |     _DEFINE_EXPR_BINARY_OPERATOR(<<, struct std::__shift_left)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: candidate 61: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_Expr, std::_Constant, _Dom, typename _Dom::value_type>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const _Expr<_Dom1, typename _Dom1::value_type>&, const typename _Dom::value_type&)’
+  415 |     _DEFINE_EXPR_BINARY_OPERATOR(<<, struct std::__shift_left)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: candidate 62: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_Constant, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const typename _Dom::value_type&, const _Expr<_Dom1, typename _Dom1::value_type>&)’
+  415 |     _DEFINE_EXPR_BINARY_OPERATOR(<<, struct std::__shift_left)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: candidate 63: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_Expr, std::_ValArray, _Dom, typename _Dom::value_type>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const _Expr<_Dom1, typename _Dom1::value_type>&, const valarray<typename _Dom::value_type>&)’
+  415 |     _DEFINE_EXPR_BINARY_OPERATOR(<<, struct std::__shift_left)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: candidate 64: ‘template<class _Dom> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_ValArray, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const valarray<typename _Dom::value_type>&, const _Expr<_Dom1, typename _Dom1::value_type>&)’
+  415 |     _DEFINE_EXPR_BINARY_OPERATOR(<<, struct std::__shift_left)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/valarray_after.h:415:5: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/valarray:1206:1: note: candidate 65: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_ValArray, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__shift_left, _Tp>::result_type> std::operator<<(const valarray<_Tp>&, const valarray<_Tp>&)’
+ 1206 | _DEFINE_BINARY_OPERATOR(<<, __shift_left)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/valarray:1206:1: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘const std::valarray<_Tp>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/valarray:1206:1: note: candidate 66: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_ValArray, std::_Constant, _Tp, _Tp>, typename std::__fun<std::__shift_left, _Tp>::result_type> std::operator<<(const valarray<_Tp>&, const typename valarray<_Tp>::value_type&)’
+ 1206 | _DEFINE_BINARY_OPERATOR(<<, __shift_left)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/valarray:1206:1: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::basic_ostream<char>’ is not derived from ‘const std::valarray<_Tp>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+/usr/include/c++/15.1.1/valarray:1206:1: note: candidate 67: ‘template<class _Tp> std::_Expr<std::__detail::_BinClos<std::__shift_left, std::_Constant, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__shift_left, _Tp>::result_type> std::operator<<(const typename valarray<_Tp>::value_type&, const valarray<_Tp>&)’
+ 1206 | _DEFINE_BINARY_OPERATOR(<<, __shift_left)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/valarray:1206:1: note: template argument deduction/substitution failed:
+/home/david/Documents/DiscordBot/src/main.cpp:120:94: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::valarray<_Tp>’
+  120 |         std::cerr <<  "Error reading spreadsheet structure (rowCount) for 'Spring 2025'." << cerr
+      |                                                                                              ^~~~
+In file included from /usr/local/include/OpenXLSX/headers/XLCell.hpp:58,
+                 from /usr/local/include/OpenXLSX/OpenXLSX.hpp:49,
+                 from /home/david/Documents/DiscordBot/src/main.cpp:3:
+/usr/local/include/OpenXLSX/headers/XLCellValue.hpp:610:26: note: candidate 68: ‘std::ostream& OpenXLSX::operator<<(std::ostream&, const XLCellValue&)’
+  610 |     inline std::ostream& operator<<(std::ostream& os, const XLCellValue& value)
+      |                          ^~~~~~~~
+/usr/local/include/OpenXLSX/headers/XLCellValue.hpp:610:74: note: no known conversion for argument 2 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘const OpenXLSX::XLCellValue&’
+  610 |     inline std::ostream& operator<<(std::ostream& os, const XLCellValue& value)
+      |                                                       ~~~~~~~~~~~~~~~~~~~^~~~~
+/usr/local/include/OpenXLSX/headers/XLCellValue.hpp:628:26: note: candidate 69: ‘std::ostream& OpenXLSX::operator<<(std::ostream&, const XLCellValueProxy&)’
+  628 |     inline std::ostream& operator<<(std::ostream& os, const XLCellValueProxy& value)
+      |                          ^~~~~~~~
+/usr/local/include/OpenXLSX/headers/XLCellValue.hpp:628:79: note: no known conversion for argument 2 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘const OpenXLSX::XLCellValueProxy&’
+  628 |     inline std::ostream& operator<<(std::ostream& os, const XLCellValueProxy& value)
+      |                                                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+In file included from /usr/local/include/OpenXLSX/headers/XLCell.hpp:59:
+/usr/local/include/OpenXLSX/headers/XLFormula.hpp:359:26: note: candidate 70: ‘std::ostream& OpenXLSX::operator<<(std::ostream&, const XLFormula&)’
+  359 |     inline std::ostream& operator<<(std::ostream& os, const XLFormula& value)
+      |                          ^~~~~~~~
+/usr/local/include/OpenXLSX/headers/XLFormula.hpp:359:72: note: no known conversion for argument 2 from ‘std::ostream’ {aka ‘std::basic_ostream<char>’} to ‘const OpenXLSX::XLFormula&’
+  359 |     inline std::ostream& operator<<(std::ostream& os, const XLFormula& value)
+      |                                                       ~~~~~~~~~~~~~~~~~^~~~~
+/home/david/Documents/DiscordBot/src/main.cpp: In function ‘void on_ready_handler(dpp::cluster&, const dpp::ready_t&)’:
+/home/david/Documents/DiscordBot/src/main.cpp:541:100: error: no matching function for call to ‘dpp::command_option::command_option(dpp::command_option_type, const char [7], const char [29], bool, bool)’
+  541 |             dpp::command_option(dpp::co_user, "target", "The user to list scores for.", false, true) // Optional mention
+      |                                                                                                    ^
+/home/david/Documents/DiscordBot/src/main.cpp:541:100: note: there are 3 candidates
+In file included from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:60:
+/home/david/vcpkg/installed/x64-linux/include/dpp/appcommand.h:319:9: note: candidate 1: ‘dpp::command_option::command_option(dpp::command_option_type, const std::string&, const std::string&, bool)’
+  319 |         command_option(command_option_type t, const std::string &name, const std::string &description, bool required = false);
+      |         ^~~~~~~~~~~~~~
+/home/david/vcpkg/installed/x64-linux/include/dpp/appcommand.h:319:9: note: candidate expects 4 arguments, 5 provided
+/home/david/vcpkg/installed/x64-linux/include/dpp/appcommand.h:294:9: note: candidate 2: ‘dpp::command_option::command_option()’
+  294 |         command_option() = default;
+      |         ^~~~~~~~~~~~~~
+/home/david/vcpkg/installed/x64-linux/include/dpp/appcommand.h:294:9: note: candidate expects 0 arguments, 5 provided
+/home/david/vcpkg/installed/x64-linux/include/dpp/appcommand.h:204:19: note: candidate 3: ‘dpp::command_option::command_option(const dpp::command_option&)’
+  204 | struct DPP_EXPORT command_option : public json_interface<command_option> {
+      |                   ^~~~~~~~~~~~~~
+/home/david/vcpkg/installed/x64-linux/include/dpp/appcommand.h:204:19: note: candidate expects 1 argument, 5 provided
+/home/david/Documents/DiscordBot/src/main.cpp: In function ‘void on_slash_command_handler(dpp::cluster&, const dpp::slashcommand_t&)’:
+/home/david/Documents/DiscordBot/src/main.cpp:568:36: error: cannot convert ‘int’ to ‘std::string_view’ {aka ‘std::basic_string_view<char>’}
+  568 |             .add_field("Gotcha!:", gotcha_score)
+      |                                    ^~~~~~~~~~~~
+      |                                    |
+      |                                    int
+In file included from /home/david/vcpkg/installed/x64-linux/include/dpp/thread.h:28,
+                 from /home/david/vcpkg/installed/x64-linux/include/dpp/dpp.h:47:
+/home/david/vcpkg/installed/x64-linux/include/dpp/message.h:1232:66: note: initializing argument 2 of ‘dpp::embed& dpp::embed::add_field(std::string_view, std::string_view, bool)’
+ 1232 |         embed& add_field(std::string_view name, std::string_view value, bool is_inline = false);
+      |                                                 ~~~~~~~~~~~~~~~~~^~~~~
+/home/david/Documents/DiscordBot/src/main.cpp: In function ‘int64_t list_gotcha(dpp::cluster&, const dpp::slashcommand_t&, const std::string&, dpp::snowflake, int)’:
+/home/david/Documents/DiscordBot/src/main.cpp:169:1: warning: control reaches end of non-void function [-Wreturn-type]
+  169 | }
+      | ^
+/home/david/Documents/DiscordBot/src/main.cpp: In function ‘std::string update_spreadsheet_core_logic(const std::string&, const std::string&, bool&, bool&)’:
+/home/david/Documents/DiscordBot/src/main.cpp:341:1: warning: control reaches end of non-void function [-Wreturn-type]
+  341 | }
+      | ^
+make[3]: *** [CMakeFiles/discord-bot.dir/build.make:79: CMakeFiles/discord-bot.dir/src/main.cpp.o] Error 1
+make[2]: *** [CMakeFiles/Makefile2:87: CMakeFiles/discord-bot.dir/all] Error 2
+make[1]: *** [Makefile:91: all] Error 2
+make[1]: Leaving directory '/home/david/Documents/DiscordBot/build'
+make: *** [Makefile:7: all] Error 2

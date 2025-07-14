@@ -33,7 +33,9 @@
 build/
 cmake/
 CmakeFiles/
-Gotcha.xlsx
 CMakeLists.bak
 CMakeCache.txt
 
+#private files
+discordToName.csv
+Gotcha.xlsx
