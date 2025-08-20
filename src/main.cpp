@@ -20,11 +20,12 @@ using namespace OpenXLSX;
 
 const std::string SPREADSHEET_FILENAME = "Gotcha.xlsx";
 const std::string TEMP_SPREADSHEET_FILENAME = "Gotcha_temp_save.xlsx";
-//const dpp::snowflake GOTCHA_CHANNEL_ID = 1376356171417649222;// Regular Gotcha Channel ID
-const dpp::snowflake GOTCHA_CHANNEL_ID = 1376356171417649222; // Testing Channel ID
+const dpp::snowflake GOTCHA_CHANNEL_ID = 1010207718885314620;// Regular Gotcha Channel ID
+//const dpp::snowflake GOTCHA_CHANNEL_ID = 1376356171417649222; // Testing Channel ID
+const dpp::snowflake OUTPUT_THREAD_ID = 1407783022295519292;
 static std::string BOT_TOKEN = std::getenv("DISCORD_BOT_TOKEN");
 static std::mutex spreadsheet_mutex;
-
+static std::string CURRENT_SEM = "Fall 2025";
 std::vector<std::string> split(const std::string& s, char delimiter) {
     std::vector<std::string> tokens;
     std::string token;
@@ -104,11 +105,11 @@ std::vector<int> getScores(const std::string& target_spreadsheet_name, const dpp
     }
 
     OpenXLSX::XLWorksheet wks;
-    const std::string worksheet_name = "Spring 2025";
+    const std::string worksheet_name = CURRENT_SEM;
     try {
-        wks = doc.workbook().worksheet(worksheet_name); //Change this for whatever semester we are in.
+        wks = doc.workbook().worksheet(CURRENT_SEM); //Change this for whatever semester we are in.
     } catch (const std::exception& e) {
-        std::cerr << "Error accessing worksheet 'Spring 2025': " << e.what() << std::endl;
+      std::cerr << "Error accessing worksheet " << CURRENT_SEM <<" " << e.what() << std::endl;
         safeCloseDocument(doc);
         return scores;
     }
@@ -289,11 +290,11 @@ std::string update_spreadsheet_core_logic (const std::string& sender_discord_use
    
     XLWorksheet wks;
     try {
-        wks = doc.workbook().worksheet("Spring 2025"); //Change this for whatever semester we are in. 
+        wks = doc.workbook().worksheet(CURRENT_SEM); //Change this for whatever semester we are in. 
     } catch (const std::exception& e) {
-         std::cerr << "Error accessing worksheet 'Spring 2025': " << e.what() << std::endl;
+         std::cerr << "Error accessing worksheet " << CURRENT_SEM << " " << e.what() << std::endl;
          try { doc.close(); } catch(...) {}
-         return "Error accessing worksheet 'Spring 2025'. It might not exist or is corrupted.";
+         return "Error accessing worksheet " + CURRENT_SEM + ". It might not exist or is corrupted.";
     }
 
     const auto& discordToNameMap = getDiscordToName();
@@ -327,9 +328,9 @@ std::string update_spreadsheet_core_logic (const std::string& sender_discord_use
     try {
         numRows = wks.rowCount();
     } catch (const std::exception& e) {
-        std::cerr << "Error getting row count for worksheet 'Spring 2025': " << e.what() << std::endl;
+        std::cerr << "Error getting row count for worksheet " << CURRENT_SEM << e.what() << std::endl;
         try { doc.close(); } catch(...) {}
-        return "Error reading spreadsheet structure (rowCount) for 'Spring 2025'.";
+        return ("Error reading spreadsheet structure (rowCount) for ." + CURRENT_SEM);
     }
     int numCols = wks.columnCount();
     
@@ -444,7 +445,8 @@ void update_Spreadsheet_and_reply(const dpp::message_create_t event,
         bool shooter_updated, victim_updated;
         std::string status_msg = update_spreadsheet_core_logic(sender_discord_username, target_discord_username, shooter_updated, victim_updated);
         if (status_msg.empty()) {
-            event.reply("Scores processed for " + sender_discord_username + " and " + target_discord_username + ". The spreadsheet uploads every night @ 1AM.");
+            
+        //event.reply("Scores processed for " + sender_discord_username + " and " + target_discord_username + ". The spreadsheet uploads every night @ 1AM.");
         } else {
             event.reply("Error processing scores: " + status_msg);
         }
@@ -631,7 +633,7 @@ void on_ready_handler(dpp::cluster& bot, const dpp::ready_t& event) {
          std::cout << "Registering slash commands...\n";
 
         bot.global_command_create(dpp::slashcommand("ping", "Ping Pong!", bot.me.id));
-
+        bot.message_create(dpp::message(OUTPUT_THREAD_ID, "Bot is ready..."));
 
         dpp::slashcommand update_command("update", "Update the Gotcha! spreadsheet from past messages.", bot.me.id);
         update_command.add_option(
@@ -709,9 +711,10 @@ void on_message_create_handler(dpp::cluster& bot, const dpp::message_create_t& e
                       << "' tagged '" << target_discord_username
                       << "' in channel " << msg.channel_id
                       << " with an image.\n";
-
+            bot.message_create(dpp::message(OUTPUT_THREAD_ID, "Gotcha! " + msg.author.get_mention() + " taged " + msg.mentions.front().first.get_mention() + ". Processing score..."));
             // Initial reply to acknowledge
-            event.reply("Gotcha! " + msg.author.get_mention() + " tagged " + msg.mentions.front().first.get_mention() + ". Processing score...");
+            
+//            event.reply("Gotcha! " + msg.author.get_mention() + " tagged " + msg.mentions.front().first.get_mention() + ". Processing score...");
 
             update_Spreadsheet_and_reply(event, sender_discord_username, target_discord_username);
             // The final reply about spreadsheet update status will now come from updateGotchaSpreadsheet
