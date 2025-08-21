@@ -348,17 +348,17 @@ std::string update_spreadsheet_core_logic (const std::string& sender_discord_use
             if (!out_shooter_score_updated && cellValueStr == shooter_spreadsheet_name) {
                         //move over one to left to get to Gotcha! 
                 shooter_found = true;
-                auto score_cell = wks.cell(row, 2); 
+                auto score_cell = wks.cell(row, 2); //gotcha! cell
                 if (Meeks) {
                     score_cell = wks.cell(row, 4); //Meeks points
-                  if (score_cell.value().type() != XLValueType::Integer) {
+                  if (score_cell.value().type() == XLValueType::Integer) {
                         current_score = score_cell.value().get<int>();
                     } else {
                       current_score = 0;
                       }
                     score_cell.value() = current_score + 1;
                     std::cout << "Updated '" << shooter_spreadsheet_name << "' Meeks points to " << current_score + 1 << ".\n";
-                    out_victim_score_updated = true;
+                    out_shooter_score_updated = true;
                     continue;
                   
                 }
@@ -376,7 +376,7 @@ std::string update_spreadsheet_core_logic (const std::string& sender_discord_use
                 if (Meeks) {
                     continue;
                 }
-                       //move over one to left to get to Gotcha! 
+         
                 victim_found = true;
                 auto score_cell = wks.cell(row, 3); 
 
@@ -384,7 +384,7 @@ std::string update_spreadsheet_core_logic (const std::string& sender_discord_use
                     current_score = score_cell.value().get<int>();
                 }
                 score_cell.value() = current_score + 1;;
-                out_shooter_score_updated = true;
+                out_victim_score_updated = true;
                 std::cout << "Updated '" << victim_spreadsheet_name << "' Got Got! score to " << current_score +1 << ".\n";
                 std::cout <<" Currrent value of cell: " << score_cell.value().get<int>() << "\n";
           }             
