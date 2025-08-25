@@ -1,20 +1,16 @@
-#include <cstdint>
-#include <dpp/dpp.h> // Includes most common DPP headers
+#include "listscores.h"
+#include "main.h"
+#include <dpp/dpp.h>
 #include <OpenXLSX.hpp>
-
-#include <cstdlib> // For std::getenv
-#include <filesystem>
-#include <fstream> // Potentially for future config file reading
 #include <iostream>
-#include <mutex>
 #include <string>
-#include <unordered_map>
-#include <variant>
 #include <vector>
+#include <mutex>
+#include <filesystem>
 #include <algorithm>
 #include <iomanip>
 #include <sstream>
-#include "listscores.h"
+
 using namespace std;
 using namespace OpenXLSX;
 

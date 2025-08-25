@@ -12,7 +12,11 @@ find_package(OpenSSL REQUIRED)
 find_package(OpenXLSX REQUIRED)
 
 # Add your executables
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME}
+                src/main.cpp
+                src/listscores.cpp
+                src/updatespreadsheet.cpp
+                src/searchmessages.cpp)
 add_executable(getmembers src/getmembers.cpp) # Your getmembers executable
 
 # Configure the main project executable
