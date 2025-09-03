@@ -62,10 +62,10 @@ std::vector<int> getScores(const std::string& target_spreadsheet_name, const dpp
                 if (cellValueStr == target_spreadsheet_name ) {
                     //move over one to left to get to Gotcha!
                     target_found = true;
-                    //cols: gotcha - 2, gotgot - 3, meeks - 4
+                    //cols: gotcha - 2, gotgot - 3, meeks - 5
                     scores[0] = wks.cell(row, 2).value().get<int>(); //Gotcha!
                     scores[1] = wks.cell(row, 3).value().get<int>(); //Got Got!
-                    scores[2] = wks.cell(row, 4).value().get<int>(); //Meeks
+                    scores[2] = wks.cell(row, 5).value().get<int>(); //Meeks
                     break; //found target
                 }
             }

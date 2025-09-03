@@ -103,7 +103,7 @@ bool& out_victim_score_updated) {
                     shooter_found = true;
                     auto score_cell = wks.cell(row, 2); //gotcha! cell
                     if (Meeks) {
-                        score_cell = wks.cell(row, 4); //Meeks points
+                        score_cell = wks.cell(row, 5); //Meeks points
                         if (score_cell.value().type() == XLValueType::Integer) {
                             current_score = score_cell.value().get<int>();
                         } else {
