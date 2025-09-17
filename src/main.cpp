@@ -2,9 +2,7 @@
 #include "listscores.h"
 #include "searchmessages.h"
 #include "updatespreadsheet.h"
-#include <cstdint>
 #include <cstdlib>
-#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
