@@ -53,7 +53,7 @@ std::pmr::unordered_map<std::string, std::string> createMap() {
     file.close();
     return discordToName;
 }
-
+//Testing somethng
 
 std::pmr::unordered_map<std::string, std::string>& getDiscordToName() {
   static std::pmr::unordered_map<std::string, std::string> map = createMap();
