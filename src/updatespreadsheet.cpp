@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <sstream>
-
+#include <ctime>
 using namespace std;
 using namespace OpenXLSX;
 
@@ -154,6 +154,14 @@ bool& out_victim_score_updated) {
 
 
     if (out_shooter_score_updated || out_victim_score_updated) {
+        auto cell = wks.cell(2, 8); //2025-11-19
+        std::time_t t = std::time(nullptr);
+        std::tm* now = std::localtime(&t);
+        std::stringstream ss;
+        ss << std::put_time(now, "%Y-%M-%d");
+        std::string current_date = ss.str();
+        cell.value() = current_date;
+        
         std::cout << "Attempting to save changes to spreadsheet...\n";
         try {
             doc.saveAs(TEMP_SPREADSHEET_FILENAME);
