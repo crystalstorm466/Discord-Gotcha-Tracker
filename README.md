@@ -34,7 +34,7 @@ Update (07/13/2025):
     $ git clone https://github.com/crystalstorm466/Discord-Gotcha-Tracker.git
     $ cd Discord-Gotcha-Tracker
     $ /path/to/vcpkg/vcpkg/vcpkg install dpp
-    $ sudo yay -S openxlsx
+    $ yay -S openxlsx
     Make sure to include your bot token as an environment variable
     The spreadsheet the bot works off should be placed in the CWD of the binary
     It must be a .xlsx file no .ods files.
